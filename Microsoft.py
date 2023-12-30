@@ -1,11 +1,6 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
 import os
 from random import randint
+import time  # For adding delays
 
 for i in range(1, 365):
 
@@ -14,12 +9,12 @@ for i in range(1, 365):
         with open('file.txt', 'a') as file:
             file.write(d)
         os.system('git add .')
-        os.system('git commit --date="' + d + '"-m "commit"')
+        os.system(f'git commit --date="{d}" -m "Generated commit"')
+        time.sleep(1)  # Optional delay to avoid duplicate timestamps
             
 os.system('git push -u origin main')
 
 
-# In[ ]:
 
 
 
