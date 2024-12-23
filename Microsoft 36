@@ -27,3 +27,20 @@ for intent in intents:
 x = vectorizer.fit_transform(patterns)
 y = tags
 clf.fit(x, y)
+
+# Predict Intent
+def predict_intent(input_text):
+    X_test = vectorizer.transform([input_text])
+    return clf.predict(X_test)[0]
+
+# Generate Response
+def generate_response(input_text):
+    intent = predict_intent(input_text)
+    for intent_data in intents:
+        if intent_data["tag"] == intent:
+            return random.choice(intent_data["responses"])
+
+# Test the chatbot
+user_input = "Hi"
+response = generate_response(user_input)
+print(response)
